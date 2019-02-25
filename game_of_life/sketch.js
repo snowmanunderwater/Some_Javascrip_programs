@@ -62,7 +62,7 @@ function draw() {
     grid = next;
 
   } else if (keyCode === 32) {
-    background(0);
+    background(40);
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         let x = i * resolution;
