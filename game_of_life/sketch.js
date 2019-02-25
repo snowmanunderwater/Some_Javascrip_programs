@@ -18,6 +18,7 @@ function setup() {
   cols = width / resolution;
   rows = height / resolution;
   grid = make2DArray(cols, rows);
+  frameRate(10);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j] = floor(random(2))
