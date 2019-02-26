@@ -4,7 +4,7 @@
 
 ## TODO
 
-- [ ] If nothing changes, don't append new numbers
+- [x] If nothing changes, don't append new numbers
 - [ ] Add animation
 - [ ] Add gameover check
 - [ ] Add game points

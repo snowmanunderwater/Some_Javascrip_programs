@@ -2,11 +2,9 @@ let grid;
 
 function setup() {
   createCanvas(400, 400);
-  grid = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
- 
+  grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
   addNumber();
   addNumber();
-
   frameRate(10);
 }
 
@@ -53,7 +51,7 @@ function drawGrid() {
       noFill();
       strokeWeight(2);
       stroke(0);
-      rect(i*w, j*w, w, w);
+      rect(i * w, j * w, w, w);
 
       let val = grid[i][j];
       if (grid[i][j] !== 0) {
@@ -62,8 +60,8 @@ function drawGrid() {
         fill(0);
         noStroke();
         text(val,
-             i * w + w/2,
-             j * w + w/2);
+          i * w + w / 2,
+          j * w + w / 2);
       }
     }
   }
@@ -72,8 +70,8 @@ function drawGrid() {
 function compress() {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 4; j++) {
-      if (grid[i+1][j] === 0) {
-        grid[i+1][j] = grid[i][j];
+      if (grid[i + 1][j] === 0) {
+        grid[i + 1][j] = grid[i][j];
         grid[i][j] = 0;
       }
     }
@@ -83,61 +81,142 @@ function compress() {
 function merge() {
   for (let i = 1; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
-      if (grid[grid.length-i][j] == grid[grid.length-(i+1)][j]) {
-        grid[grid.length-i][j] *= 2;
-        grid[grid.length-(i+1)][j] = 0;
+      if (grid[grid.length - i][j] == grid[grid.length - (i + 1)][j]) {
+        grid[grid.length - i][j] *= 2;
+        grid[grid.length - (i + 1)][j] = 0;
       }
     }
   }
 }
 
-
 function flipArray() {
   let result = [];
-  for(let i = 0; i < grid[0].length; i++) {
-      let row = grid.map(e => e[i]).reverse();
-      result.push(row);
+  for (let i = 0; i < grid[0].length; i++) {
+    let row = grid.map(e => e[i]).reverse();
+    result.push(row);
   }
   grid = result;
 }
 
+function operate() {
+  compress()
+  merge()
+  compress()
+}
 
 function toRight() {
-  compress();
-  merge();
-  compress();
-  addNumber();
+  let new_grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      new_grid[i][j] = grid[i][j]
+    }
+  }
+
+
+  operate();
+
+
+  let same = false;
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (new_grid[i][j] != grid[i][j]) {
+        same = true;
+      }
+    }
+  }
+
+  if (same) {
+    addNumber();
+  }
+
 }
 
 function toLeft() {
+
+  let new_grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      new_grid[i][j] = grid[i][j]
+    }
+  }
+
+
   flipArray();
   flipArray();
-  compress();
-  merge();
-  compress();
+  operate()
   flipArray();
   flipArray();
-  addNumber();
+
+
+  let same = false;
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (new_grid[i][j] != grid[i][j]) {
+        same = true;
+      }
+    }
+  }
+
+  if (same) {
+    addNumber();
+  }
 }
 
 function toDown() {
+
+  let new_grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      new_grid[i][j] = grid[i][j]
+    }
+  }
+
+
   flipArray();
-  compress();
-  merge();
-  compress();
+  operate()
   flipArray();
   flipArray();
   flipArray();
-  addNumber();
+
+  let same = false;
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (new_grid[i][j] != grid[i][j]) {
+        same = true;
+      }
+    }
+  }
+
+  if (same) {
+    addNumber();
+  }
 }
 
 function toUp() {
+
+  let new_grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      new_grid[i][j] = grid[i][j]
+    }
+  }
+
   flipArray();
   flipArray();
   flipArray();
-  compress();
-  merge();
-  compress();
+  operate()
   flipArray();
-  addNumber();
+
+  let same = false;
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (new_grid[i][j] != grid[i][j]) {
+        same = true;
+      }
+    }
+  }
+
+  if (same) {
+    addNumber();
+  }
 }
