@@ -5,4 +5,4 @@
 
 
 - [2048](https://github.com/snowmanunderwater/Some_Javascrip_programs/tree/master/2048/) - 2048. Build with JS and p5js.
-<img src="" width="150" height="150">
+<img src="https://github.com/snowmanunderwater/Some_Javascrip_programs/blob/master/2048/2048.gif" width="150" height="150">
