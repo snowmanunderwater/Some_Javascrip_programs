@@ -1,6 +1,6 @@
 # 2048
 
-<img src="">
+<img src="https://github.com/snowmanunderwater/Some_Javascrip_programs/blob/master/2048/2048.gif">
 
 ## TODO
 
